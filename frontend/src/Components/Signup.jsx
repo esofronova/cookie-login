@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default function Signup() {
 
   return (
@@ -15,12 +13,14 @@ export default function Signup() {
             type="text"
             name={item}
             className="form-control border-dark mt-1"
-            onChange={e => {
-              // axios({
-              //   method: "POST",
-              //   url: "/check-username",
-              //   data: { value: e.target.value }
-              // });
+            onBlur={async e => {
+              await fetch('./check-username', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ value: e.target.value })
+              })
+              .then(res => res.json())
+              .then(json => console.log(json));
             }}
           />
         </label>

@@ -23,11 +23,9 @@ app.post('/logout', (req, res) => {
 
 app.get('/api', (req, res) => res.send(data));
 
-let username;
-app.post('/check-username', async (req, res) => {
+// let username;
+app.post('/check-username', (req, res) => {
   console.log(req.body);
-  await (username = req.body);
-  console.log(username);
 });
 
 app.listen(4000, console.log("Server is running on port 4000"));
