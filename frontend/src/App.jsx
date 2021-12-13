@@ -1,4 +1,5 @@
 import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 import Welcome from "./Components/Welcome";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
@@ -17,6 +18,9 @@ export default function App() {
           </Route>
           <Route exact path="/welcome">
             {user !== null ? <Welcome user={user} /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/register">
+            {user !== null ? <Redirect to="/welcome" /> : <Signup />}
           </Route>
         </Switch>
       </Router>

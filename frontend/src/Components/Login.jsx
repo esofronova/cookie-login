@@ -22,6 +22,7 @@ export default function Login() {
       <div className="flex-center">
         <button className="btn-dark px-3 py-2 rounded">Log In</button>
       </div>
+      <p className="text-center mt-3">Don't have an account? <a href="/register" className="text-decoration-none">Sign Up!</a></p>
     </form>
   );
 };
