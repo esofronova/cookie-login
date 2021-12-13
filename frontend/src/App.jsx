@@ -1,23 +1,22 @@
 import Login from "./Components/Login";
 import Welcome from "./Components/Welcome";
-import { BrowserRouter as Router, Switch, Route, Redirect, } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 export default function App() {
 
-  let [cookie, setCookie] = useState(document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+  let cookie = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
-  console.log(cookie);
+  let user = cookie !== '' ? cookie : null;
 
   return (
     <div className="container py-5">
       <Router>
         <Switch>
           <Route exact path="/login">
-            <Login />
+            {user !== null ? <Redirect to="/welcome" /> : <Login />}
           </Route>
           <Route exact path="/welcome">
-            <Welcome user={cookie} />
+            {user !== null ? <Welcome user={cookie} /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </Router>
