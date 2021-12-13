@@ -12,11 +12,11 @@ export default function App() {
     <div className="container py-5">
       <Router>
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
             {user !== null ? <Redirect to="/welcome" /> : <Login />}
           </Route>
           <Route exact path="/welcome">
-            {user !== null ? <Welcome user={cookie} /> : <Redirect to="/login" />}
+            {user !== null ? <Welcome user={user} /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </Router>
