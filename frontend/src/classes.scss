@@ -1,0 +1,19 @@
+.btn, .form-control { box-shadow: none !important; }
+.form-control { &:focus { border-color: #ced4da; }}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pointer { cursor: pointer; }
+
+.img-container {
+  width: 10em;
+  height: 10em;
+  overflow: hidden;
+  border-radius: 50%;
+  
+  img { object-fit: cover; }
+}
