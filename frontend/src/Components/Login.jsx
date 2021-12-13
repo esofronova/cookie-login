@@ -12,7 +12,7 @@ export default function Login() {
         <label key={index} className="w-100 mb-4 text-capitalize">
           {item}
           <input
-            type="text"
+            type={item === "password" ? "password" : "text"}
             name={item}
             className="form-control border-dark mt-1"
           />

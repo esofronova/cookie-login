@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser')
-const data = require('./database');
+const users = require('./database');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -9,7 +9,7 @@ app.use(cookieParser());
 
 app.post('/process_login', (req, res) => {
   let { username, password } = req.body;
-  data.some(item => item.username === username && item.password === password)
+  users.some(item => item.username === username && item.password === password)
     ?
     (res.cookie('username', username), res.redirect('/'))
     :
@@ -21,10 +21,10 @@ app.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.get('/api', (req, res) => res.send(data));
+app.get('/api', (req, res) => res.send(users));
 
 app.post('/check-username', (req, res) => {
-  data.some(item => item.username === req.body.username)
+  users.some(item => item.username === req.body.username)
     ?
     res.send({ message: "This username already exists" })
     :
@@ -32,8 +32,9 @@ app.post('/check-username', (req, res) => {
 });
 
 app.post('/add-user', (req, res) => {
-  let new_user = req.body.data;
-  console.log(new_user);
+  users.push(req.body.data);
+  res.cookie('username', req.body.data.username);
+  res.redirect('/');
 });
 
 app.listen(4000, console.log("Server is running on port 4000"));

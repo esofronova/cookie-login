@@ -29,7 +29,7 @@ export default function Signup() {
             type={item === 'password' || item === 'repeat password' ? "password" : item === 'email' ? "email" : "text"}
             name={item}
             className="form-control border-dark mt-1"
-            minlength="6"
+            // minlength="6"
             onBlur={async e => {
               if (item === 'username') {
                 await fetch('./check-username', {
